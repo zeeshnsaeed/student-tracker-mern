@@ -1,14 +1,20 @@
+import React from "react";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import NavBar from "./components/NavBar.js";
-import Hero from "./components/Hero.js";
+import StudentList from "./components/StudentList.js";
+import StudentForm from "./components/StudentForm.js";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
       <NavBar />
-      <Hero />
+      <Routes>
+        <Route path="/" element={<StudentList />} />
+        <Route path="/StudentForm" element={<StudentForm />} />
+      </Routes>
     </>
   );
 }
