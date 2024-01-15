@@ -5,21 +5,21 @@ const StudentList = () => {
   return (
     <div className="mt-5">
       <div className="container">
-        <div className="add_btn mt-2">
+        <div className="add-btn-container mt-2 text-center">
           <Link to="/StudentForm">
-            <button className="btn btn-primary">Add student</button>
+            <button className="btn btn-primary">Add Student</button>
           </Link>
         </div>
 
         <table className="table table-hover mt-3">
-          <thead className="table-dark">
+          <thead className="thead-dark">
             <tr>
               <th scope="col">Student ID</th>
               <th scope="col">Student Name</th>
               <th scope="col">Phone</th>
               <th scope="col">Email</th>
               <th scope="col">Grades</th>
-              <th scope="col"></th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
 
@@ -31,14 +31,14 @@ const StudentList = () => {
               <td>zeeshan@example.com</td>
               <td>B</td>
               <td className="d-flex justify-content-around">
-                <button className="btn btn-success">
-                  <i className="fa-regular fa-eye"></i>
+                <button className="btn btn-success" title="View">
+                  <i className="fas fa-eye"></i>
                 </button>
-                <button className="btn btn-primary">
-                  <i className="fa-regular fa-pen-to-square"></i>
+                <button className="btn btn-primary" title="Edit">
+                  <i className="fas fa-edit"></i>
                 </button>
-                <button className="btn btn-danger">
-                  <i className="fa-solid fa-trash"></i>
+                <button className="btn btn-danger" title="Delete">
+                  <i className="fas fa-trash"></i>
                 </button>
               </td>
             </tr>
@@ -49,14 +49,14 @@ const StudentList = () => {
               <td>john@example.com</td>
               <td>B+</td>
               <td className="d-flex justify-content-around">
-                <button className="btn btn-success">
-                  <i className="fa-regular fa-eye"></i>
+                <button className="btn btn-success" title="View">
+                  <i className="fas fa-eye"></i>
                 </button>
-                <button className="btn btn-primary">
-                  <i className="fa-regular fa-pen-to-square"></i>
+                <button className="btn btn-primary" title="Edit">
+                  <i className="fas fa-edit"></i>
                 </button>
-                <button className="btn btn-danger">
-                  <i className="fa-solid fa-trash"></i>
+                <button className="btn btn-danger" title="Delete">
+                  <i className="fas fa-trash"></i>
                 </button>
               </td>
             </tr>

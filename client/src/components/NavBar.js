@@ -4,31 +4,27 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
           <Link className="navbar-brand" to="/">
-            StudentTracker
+            <strong>StudentTracker</strong>
           </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link" to="/" aria-current="page">
-                  Home
-                </Link>
-              </li>
-            </ul>
-            <form className="d-flex" role="search">
+          <div
+            className="collapse navbar-collapse d-flex justify-content-end"
+            id="navbarNav"
+          >
+            <form className="d-flex">
               <input
                 className="form-control me-2"
                 type="search"
