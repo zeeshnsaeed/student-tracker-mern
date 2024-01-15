@@ -11,7 +11,7 @@ const StudentList = () => {
           </Link>
         </div>
 
-        <table className="table mt-3">
+        <table className="table table-hover mt-3">
           <thead className="table-dark">
             <tr>
               <th scope="col">Student ID</th>
