@@ -8,6 +8,7 @@ import "./App.css";
 import NavBar from "./components/NavBar.js";
 import StudentList from "./components/StudentList.js";
 import StudentForm from "./components/StudentForm.js";
+import UpdateStudent from "./components/UpdateStudent.js";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<StudentList />} />
         <Route path="/StudentForm" element={<StudentForm />} />
+        <Route path="/UpdateStudent" element={<UpdateStudent />} />
       </Routes>
     </>
   );

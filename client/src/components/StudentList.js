@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 const StudentList = () => {
   return (
     <div className="mt-5">
@@ -31,14 +34,14 @@ const StudentList = () => {
               <td>zeeshan@example.com</td>
               <td>B</td>
               <td className="d-flex justify-content-around">
-                <button className="btn btn-success" title="View">
-                  <i className="fas fa-eye"></i>
-                </button>
-                <button className="btn btn-primary" title="Edit">
-                  <i className="fas fa-edit"></i>
-                </button>
+                <Link to="/UpdateStudent">
+                  <button className="btn btn-primary" title="Edit">
+                    <EditIcon style={{ fontSize: 18 }} />
+                  </button>
+                </Link>
+
                 <button className="btn btn-danger" title="Delete">
-                  <i className="fas fa-trash"></i>
+                  <DeleteIcon style={{ fontSize: 18 }} />
                 </button>
               </td>
             </tr>
@@ -49,14 +52,14 @@ const StudentList = () => {
               <td>john@example.com</td>
               <td>B+</td>
               <td className="d-flex justify-content-around">
-                <button className="btn btn-success" title="View">
-                  <i className="fas fa-eye"></i>
-                </button>
-                <button className="btn btn-primary" title="Edit">
-                  <i className="fas fa-edit"></i>
-                </button>
+                <Link to="/UpdateStudent">
+                  <button className="btn btn-primary" title="Edit">
+                    <EditIcon style={{ fontSize: 18 }} />
+                  </button>
+                </Link>
+
                 <button className="btn btn-danger" title="Delete">
-                  <i className="fas fa-trash"></i>
+                  <DeleteIcon style={{ fontSize: 18 }} />
                 </button>
               </td>
             </tr>

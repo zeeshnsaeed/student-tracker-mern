@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const StudentForm = () => {
+const UpdateStudent = () => {
   const [value, setValue] = useState({
     sid: "",
     sname: "",
@@ -31,7 +31,7 @@ const StudentForm = () => {
 
           <div className="card">
             <div className="card-header">
-              <h3 className="mb-0">Student Information Form</h3>
+              <h3 className="mb-0"> Update Student Information</h3>
             </div>
             <div className="card-body">
               <form>
@@ -117,4 +117,4 @@ const StudentForm = () => {
   );
 };
 
-export default StudentForm;
+export default UpdateStudent;
