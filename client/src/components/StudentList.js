@@ -12,7 +12,7 @@ const StudentList = () => {
         </div>
 
         <table className="table table-hover mt-3">
-          <thead className="thead-dark">
+          <thead>
             <tr>
               <th scope="col">Student ID</th>
               <th scope="col">Student Name</th>

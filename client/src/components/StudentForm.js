@@ -23,7 +23,7 @@ const StudentForm = () => {
                     type="text"
                     className="form-control"
                     id="studentID"
-                    placeholder="Enter Student ID"
+                    placeholder="Student ID"
                   />
                 </div>
 
@@ -34,7 +34,7 @@ const StudentForm = () => {
                     type="text"
                     className="form-control"
                     id="studentName"
-                    placeholder="Enter Student Name"
+                    placeholder="Student Name"
                   />
                 </div>
 
