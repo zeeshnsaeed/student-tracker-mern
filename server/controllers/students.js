@@ -1,84 +1,76 @@
 import Student from "../models/Student.js";
+import { StatusCodes } from "http-status-codes";
 
-// Create a new Student   C => CRUD
 const createStudent = async (req, res, next) => {
   try {
     const student = await Student.create(req.body);
-    res.status(201).json({ student });
+    res.status(StatusCodes.CREATED).json({ student });
   } catch (error) {
-    next(error); // Pass the error to the error handling middleware
+    next(error);
   }
 };
 
-// Get all Students     R => CRUD
 const getAllStudents = async (req, res, next) => {
   try {
     const students = await Student.find({});
-    res.status(200).json({ students });
+    res.status(StatusCodes.OK).json({ students });
   } catch (error) {
     next(error);
   }
 };
 
-// Get a single Student   R => CRUD
-const getStudent = async (req, res, next) => {
+const getStudentById = async (req, res, next) => {
   try {
     const { id: studentID } = req.params;
-    const student = await Student.findOne({ _id: studentID });
+    const student = await Student.findById(studentID);
 
     if (!student) {
       throw new Error(`Student not found with id: ${studentID}`);
     }
 
-    res.status(200).json({ student });
+    res.status(StatusCodes.OK).json({ student });
   } catch (error) {
     next(error);
   }
 };
 
-// Update Student Handler  U => CRUD
-const updateStudent = async (req, res, next) => {
+const updateStudentById = async (req, res, next) => {
   try {
     const { id: studentID } = req.params;
-    const student = await Student.findOneAndUpdate(
-      { _id: studentID },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const student = await Student.findByIdAndUpdate(studentID, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!student) {
       throw new Error(`Student not found with id: ${studentID}`);
     }
 
-    res.status(200).json({ student });
+    res.status(StatusCodes.OK).json({ student });
   } catch (error) {
     next(error);
   }
 };
 
-// Delete Student Handler  D => CRUD
-const deleteStudent = async (req, res, next) => {
+const deleteStudentById = async (req, res, next) => {
   try {
     const { id: studentID } = req.params;
-    const student = await Student.findOneAndDelete({ _id: studentID });
+    const student = await Student.findByIdAndDelete(studentID);
 
     if (!student) {
       throw new Error(`Student not found with id: ${studentID}`);
     }
 
-    res.status(200).json({ student });
+    res.status(StatusCodes.OK).json({ student });
   } catch (error) {
     next(error);
   }
 };
 
-export default {
-  getAllStudents,
+export {
   createStudent,
-  getStudent,
-  updateStudent,
-  deleteStudent,
+  getAllStudents,
+  getStudentById as getStudent,
+  updateStudentById as updateStudent,
+  deleteStudentById as deleteStudent,
 };
