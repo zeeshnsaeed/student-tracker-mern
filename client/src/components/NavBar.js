@@ -24,7 +24,8 @@ const NavBar = () => {
             className="collapse navbar-collapse d-flex justify-content-end"
             id="navbarNav"
           >
-            <form className="d-flex">
+            {/* Updated search form to hide on smaller screens */}
+            <form className="d-none d-lg-flex">
               <input
                 className="form-control me-2"
                 type="search"

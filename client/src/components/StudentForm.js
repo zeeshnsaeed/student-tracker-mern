@@ -1,6 +1,5 @@
-// StudentForm.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import { BarLoader } from "react-spinners";
 import DuplicateDataModal from "./DuplicateDataModal";
@@ -23,6 +22,7 @@ const StudentForm = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,6 +48,7 @@ const StudentForm = () => {
 
         if (res.ok) {
           setFormData(initialFormData);
+          navigate("/");
         } else {
           const data = await res.json();
           if (res.status === 400) {

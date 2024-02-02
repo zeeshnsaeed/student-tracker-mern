@@ -18,7 +18,6 @@ function App() {
         <Route path="/" element={<StudentList />} />
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/UpdateStudent/:id" element={<UpdateStudent />} />
-        {/* <Route path="/UpdateStudent/:id" component={UpdateStudent} /> */}
       </Routes>
     </>
   );

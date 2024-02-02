@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-const DuplicateDataModal = ({ isOpen, closeModal }) => {
+const DeleteConfirmationModal = ({ isOpen, closeModal, onDelete }) => {
   const modalStyles = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -28,39 +28,46 @@ const DuplicateDataModal = ({ isOpen, closeModal }) => {
   };
 
   const buttonStyles = {
-    backgroundColor: "#e74c3c",
     color: "#ffffff",
     padding: "8px 16px",
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
-    position: "absolute",
-    top: "10px",
-    right: "10px",
   };
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel="Duplicate Data Modal"
+      contentLabel="Delete Confirmation Modal"
       style={modalStyles}
     >
-      <button onClick={closeModal} style={buttonStyles}>
-        <i className="fas fa-times"></i>
-      </button>
-      <br />
       <div style={{ textAlign: "center" }}>
         <h2 style={{ marginBottom: "15px", color: "#e74c3c" }}>
-          Duplicate Data Error
+          Delete Confirmation
         </h2>
         <p style={{ marginBottom: "20px", color: "#555" }}>
-          A student with the same ID or email already exists. Please
-          double-check your input.
+          Are you sure you want to delete this student?
         </p>
+        <button
+          onClick={onDelete}
+          style={{ ...buttonStyles, backgroundColor: "#e74c3c" }}
+        >
+          Confirm Delete
+        </button>
+        <button
+          onClick={closeModal}
+          style={{
+            ...buttonStyles,
+            marginLeft: "10px",
+            backgroundColor: "green",
+          }}
+        >
+          Cancel
+        </button>
       </div>
     </Modal>
   );
 };
 
-export default DuplicateDataModal;
+export default DeleteConfirmationModal;
