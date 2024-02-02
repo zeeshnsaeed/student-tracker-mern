@@ -1,14 +1,50 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { css } from "@emotion/react";
+import { BarLoader } from "react-spinners";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const UpdateStudent = () => {
+  const { id } = useParams();
   const [value, setValue] = useState({
-    sid: "",
-    sname: "",
+    studentID: "",
+    name: "",
     phone: "",
     email: "",
-    grade: "",
+    grades: "",
   });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch student details when component mounts
+    fetchStudentDetails();
+  }, [id]);
+
+  const fetchStudentDetails = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/students/${id}`
+      );
+      const data = await response.json();
+      const studentDetails = data.student;
+
+      setValue({
+        studentID: studentDetails.studentID,
+        name: studentDetails.name,
+        phone: studentDetails.phone,
+        email: studentDetails.email,
+        grades: studentDetails.grades,
+      });
+    } catch (error) {
+      console.error("Error fetching student details:", error);
+    }
+  };
 
   const setData = (e) => {
     const { name, value } = e.target;
@@ -19,6 +55,46 @@ const UpdateStudent = () => {
         [name]: value,
       };
     });
+  };
+
+  const updateStudent = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/v1/students/${id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(value),
+          }
+        );
+
+        if (response.ok) {
+          // Redirect or perform any other action upon successful update
+          console.log("Student updated successfully!");
+          // Reset form data after successful update
+          setValue({
+            studentID: "",
+            name: "",
+            phone: "",
+            email: "",
+            grades: "",
+          });
+          navigate("/"); // Redirect to home or any other page
+        } else {
+          console.error("Error updating student:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error updating student:", error);
+      } finally {
+        setLoading(false);
+      }
+    }, 1000);
   };
 
   return (
@@ -34,7 +110,7 @@ const UpdateStudent = () => {
               <h3 className="mb-0"> Update Student Information</h3>
             </div>
             <div className="card-body">
-              <form>
+              <form onSubmit={updateStudent}>
                 {/* Student ID */}
                 <div className="form-group">
                   <label htmlFor="studentID">ID</label>
@@ -44,8 +120,8 @@ const UpdateStudent = () => {
                     id="studentID"
                     placeholder="Student ID"
                     onChange={setData}
-                    value={value.sid}
-                    name="sid"
+                    value={value.studentID}
+                    name="studentID"
                   />
                 </div>
 
@@ -58,8 +134,8 @@ const UpdateStudent = () => {
                     id="studentName"
                     placeholder="Student Name"
                     onChange={setData}
-                    value={value.sname}
-                    name="sname"
+                    value={value.name}
+                    name="name"
                   />
                 </div>
 
@@ -100,13 +176,22 @@ const UpdateStudent = () => {
                     id="studentGrade"
                     placeholder="Student Grade"
                     onChange={setData}
-                    value={value.grade}
-                    name="grade"
+                    value={value.grades}
+                    name="grades"
                   />
                 </div>
 
                 <button type="submit" className="btn btn-primary mt-3">
-                  Submit
+                  {loading ? (
+                    <BarLoader
+                      color={"#ffffff"}
+                      loading={loading}
+                      css={override}
+                      size={150}
+                    />
+                  ) : (
+                    "Update"
+                  )}
                 </button>
               </form>
             </div>
