@@ -11,13 +11,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: ["https://student-tracker-mern.vercel.app/"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 // Routes
